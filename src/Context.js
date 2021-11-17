@@ -4,6 +4,7 @@ const Context = createContext()
 
 const ContextProvider = (props) =>{
     const [photos, setPhotos] = useState([]);
+    const [cartItems, setCartItems]= useState([])
     const [loading, setLoading] = useState(false)
     
 
@@ -22,9 +23,13 @@ const ContextProvider = (props) =>{
       });
     }, []);
 
+    const addCartItems = (newObj) =>{
+    setCartItems(prevState => [...prevState, newObj])
+    }
+console.log(cartItems)
 return(
     <div>
-        <Context.Provider value={{data: photos, loading: loading, handleLoading}}>
+        <Context.Provider value={{data: photos, loading, addCartItems, cartItems, handleLoading}}>
          {props.children}
         </Context.Provider>
     </div>

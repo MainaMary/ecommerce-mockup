@@ -12,8 +12,8 @@ const Photos = () => {
       <Wrapper>
         {loading
           ? "loading ...."
-          : data.map(({ download_url, name }, index) => (
-              <Images key={index} url={download_url} name={name} />
+          : data.map((obj, index) => (
+              <Images key={index} obj={obj} url={obj.download_url} id={obj.id} name={obj.name}/>
             ))}
       </Wrapper>
     </div>
