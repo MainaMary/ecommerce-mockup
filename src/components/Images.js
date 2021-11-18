@@ -9,7 +9,6 @@ const Images = (props) => {
   const { addCartItems, cartItems} = useContext(Context);
   const { name, url,id, obj} = props;
   
-  console.log(obj)
   
   const [hovered, setHovered] = useState(false);
   const [toggle, setToggle] = useState(false);
@@ -30,28 +29,63 @@ const Images = (props) => {
   
   //const cartIcon = hovered && <BsHeart />
   return (
-    <MainWrapper
+    <Wrapper
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <Toggler onClick={handleToggle}>{toggle ? <BsHeartFill /> : <BsHeart />}</Toggler>
-      <div onClick={handleToggle}>{cartIcon()}</div>
-      <img src={url} alt={name} />  
+     
+       <MainWrapper> 
+        <Toggler onClick={handleToggle}>{toggle ? <BsHeartFill /> : <BsHeart />}</Toggler>
+       <img src={url} alt={name} /> 
+       <AddToCart> Add to cart{cartIcon()}</AddToCart>
+       </MainWrapper>
+     
       
-    </MainWrapper>
+    </Wrapper>
   );
 };
 
 export default Images;
 
+const Wrapper = styled.div``
 const Toggler = styled.div`
+position: absolute;
+top: 20px;
+right: 20px;
 
 `
+
 const MainWrapper = styled.div`
+position: relative;
+transition: transform .2s;
+cursor: pointer;
+border-radius: 5px;
+ max-width: 300px;
+  &:hover{
+      transform: scale(1.1);
+      border: 2px solid #fff;
+  }
 img{
-    max-width: 300px;
-    height: auto;
+   
+    height: 200px;
     width: 100%;
+    object-fit: cover;
 }
+`
+const AddToCart = styled.div`
+position: absolute;
+background-color: red;
+text-align: center;
+width: 100%;
+font-size: 20px;
+bottom: 0;
+opacity: 0;
+display: flex;
+align-items: center;
+justify-content:space-around;
+padding: 10px 0;
+
+${MainWrapper}:hover & {
+opacity: 1;
 `
 Images.propTypes = {};
