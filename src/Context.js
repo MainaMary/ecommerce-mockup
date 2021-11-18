@@ -12,6 +12,10 @@ const ContextProvider = (props) =>{
         setLoading(true)
     }
 
+    const emptyCart =() =>{
+      setCartItems([])
+    }
+
     useEffect(() => {
       axios({
         method: "get",
@@ -26,10 +30,17 @@ const ContextProvider = (props) =>{
     const addCartItems = (newObj) =>{
     setCartItems(prevState => [...prevState, newObj])
     }
-console.log(cartItems)
+
+    const removeCartItems = (id) =>{
+      const currentCart = cartItems.filter(item => item.id !== id)
+      console.log(id)
+      console.log(cartItems)
+      setCartItems(currentCart)
+    }
+
 return(
     <div>
-        <Context.Provider value={{data: photos, loading, addCartItems, cartItems, handleLoading}}>
+        <Context.Provider value={{data: photos, loading, addCartItems, cartItems, handleLoading, removeCartItems, emptyCart}}>
          {props.children}
         </Context.Provider>
     </div>

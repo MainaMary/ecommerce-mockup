@@ -26,4 +26,9 @@ const Wrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 20px;
+  padding: 20px 10px;
+  @media (max-width: 768px){
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
 `;
