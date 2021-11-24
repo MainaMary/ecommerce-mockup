@@ -44,16 +44,20 @@ img{
     width: 100%;
     object-fit: cover;
 }
+@media(max-width: 768px){
+    max-width: 150px;
+}
 `
 const Delete = styled.div`
 position: absolute;
-background-color: red;
+background-color: crimson;
 text-align: center;
 width: 100%;
-font-size: 20px;
+font-size: 14px;
 bottom: 0;
 opacity: 0;
 display: flex;
+padding: 5px  0;
 justify-content: space-around;
 align-items: center;
 

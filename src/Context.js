@@ -15,6 +15,12 @@ const ContextProvider = (props) =>{
     const emptyCart =() =>{
       setCartItems([])
     }
+   
+    //get items from local storage
+    useEffect(()=>{
+      const savedItems = localStorage.getItem('storage-key')? JSON.parse(localStorage.getItem('storage-key')): []
+       setCartItems(savedItems)
+    },[])
 
     useEffect(() => {
       axios({
@@ -27,15 +33,21 @@ const ContextProvider = (props) =>{
       });
     }, []);
 
+    
+    const setLocalStorage= (items) =>{
+      localStorage.setItem('storage-key', JSON.stringify(items))
+    }
+
     const addCartItems = (newObj) =>{
-    setCartItems(prevState => [...prevState, newObj])
+      const itemsStored= [...cartItems, newObj]
+    setCartItems(itemsStored)
+    setLocalStorage(itemsStored)
     }
 
     const removeCartItems = (id) =>{
       const currentCart = cartItems.filter(item => item.id !== id)
-      console.log(id)
-      console.log(cartItems)
       setCartItems(currentCart)
+      setLocalStorage(currentCart)
     }
 
 return(

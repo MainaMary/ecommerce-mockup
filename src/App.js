@@ -1,4 +1,4 @@
-import "./App.css";
+
 import React from "react"
 import Cart from "./pages/Cart";
 import Photos from "./pages/Photos";

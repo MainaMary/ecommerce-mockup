@@ -3,10 +3,12 @@ import { Context } from "../Context";
 import styled from "styled-components";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { RiShoppingCart2Fill} from "react-icons/ri";
+import { FaCross} from "react-icons/fa";
+
 
 
 const Images = (props) => {
-  const { addCartItems, cartItems} = useContext(Context);
+  const { addCartItems, removeCartItems,cartItems} = useContext(Context);
   const { name, url,id, obj} = props;
   
   
@@ -18,25 +20,27 @@ const Images = (props) => {
   };
 
  const cartIcon = () =>{
+
    const cartItemsExist = cartItems.some(item => item.id === id )
    if(cartItemsExist){
-    return toggle ? <BsHeart /> : <RiShoppingCart2Fill />
+    return <RiShoppingCart2Fill  onClick={()=> removeCartItems(id)}  />
    }
    else if(hovered){
-    return <BsHeart onClick={()=> addCartItems(obj)} />
+    return <FaCross onClick={()=> addCartItems(obj)} />
    }
  }
   
-  //const cartIcon = hovered && <BsHeart />
+ 
   return (
     <Wrapper
+    
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
      
        <MainWrapper> 
         <Toggler onClick={handleToggle}>{toggle ? <BsHeartFill /> : <BsHeart />}</Toggler>
-       <img src={url} alt={name} /> 
+       <img src={url} alt={name} loading="lazy" /> 
        <AddToCart> Add to cart{cartIcon()}</AddToCart>
        </MainWrapper>
      
@@ -47,11 +51,14 @@ const Images = (props) => {
 
 export default Images;
 
-const Wrapper = styled.div``
+const Wrapper = styled.div`
+
+`
 const Toggler = styled.div`
 position: absolute;
 top: 20px;
 right: 20px;
+
 
 `
 
@@ -61,6 +68,7 @@ transition: transform .2s;
 cursor: pointer;
 border-radius: 5px;
  max-width: 300px;
+ margin: auto;
   &:hover{
       transform: scale(1.1);
       border: 2px solid #fff;
@@ -70,14 +78,15 @@ img{
     height: 200px;
     width: 100%;
     object-fit: cover;
+    
 }
 `
 const AddToCart = styled.div`
 position: absolute;
-background-color: red;
+background-color: crimson;
 text-align: center;
 width: 100%;
-font-size: 20px;
+font-size: 14px;
 bottom: 0;
 opacity: 0;
 display: flex;

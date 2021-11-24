@@ -27,7 +27,7 @@ const Header= () => {
 export default Header
 
 const HeaderWrapper = styled.nav`
-background-color: red;
+background-color: crimson;
 height: 8vh;
 display: flex;
 justify-content: space-between;

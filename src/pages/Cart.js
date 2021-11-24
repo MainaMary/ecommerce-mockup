@@ -34,7 +34,7 @@ const Cart = () => {
   };
   return (
     <CartWrapper>
-      <h1> Checkout</h1>
+      <h2> Checkout</h2>
       <div>
         {cartItems.map(({ author, id, download_url }, index) => (
           <CartItem key={index} id={id} author={author} url={download_url} />
@@ -47,7 +47,7 @@ const Cart = () => {
           {order ? "Ordering..." : "Place order"}
         </button>
       </PlaceOrder>
-      {modal && <Modal />}
+      {modal && <Modal removeModal ={()=>setModal(false)}/>}
     </CartWrapper>
   );
 };
@@ -60,9 +60,11 @@ const CartWrapper = styled.div`
   margin: 10px auto;
   box-shadow: 0 0 3px #777;
   @media (max-width: 768px) {
-    width: 100%;
+    max-width: 400px;
+    padding: 20px ;
+    
   }
-  h1 {
+  h2 {
     text-align: center;
     font-weight: bold;
   }
@@ -78,10 +80,13 @@ button{
     padding: 20px 30px;
     text-align: center;
     font-weight: bold;
-    background-color: red;
-    font-size: 1.5rem;
+    background-color: crimson;
+    font-size: 1rem;
     border: none:
     outline: none;
     border-radius: 10px;
+}
+@media(max-width: 768px){
+padding: 10px 12px;
 }
 `;

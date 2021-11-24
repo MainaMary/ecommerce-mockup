@@ -7,8 +7,8 @@ const Photos = () => {
   const { data, loading} = useContext(Context);
   return (
     <div>
-      <h3>Photos</h3>
-      <Images />
+      <h3 style={{textAlign: "center"}}> Choose Photos</h3>
+      
       <Wrapper>
         {loading
           ? "loading ...."
